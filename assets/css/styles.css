@@ -20,3 +20,7 @@ border-radius: 10px;
 #contadores{
 margin-top: 40px;
 }
+
+span{
+    font-weight: bolder;
+}

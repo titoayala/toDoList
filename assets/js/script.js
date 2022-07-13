@@ -21,7 +21,7 @@ function renderTodasLasTareas() {
                     <td>${tarea.descripcion}</td>
                     <td>NO</td>
                     <td><button type="button" class="btn btn-danger btn-sm" onclick="borrar(${tarea.id})"> x </button></li></td>
-                </tr>` 
+                </tr>`
     }
     tablaTareas.innerHTML = html //Actualiza el HTML
     totalTareas.innerHTML = misTareas.length
@@ -29,6 +29,10 @@ function renderTodasLasTareas() {
 
 botonTarea.addEventListener("click", () => {
     const nuevaTarea = inputTarea.value //toma el texto ingresado
+    if (nuevaTarea == "") { //Valida que el Input no esté vacío
+        alert("Por favor agregar una tarea")
+        return
+    }
     idTarea++
     misTareas.push({ id: idTarea, descripcion: nuevaTarea }) //Se coloca el texto en el arreglo
     inputTarea.value = "" //Se vacía el cuadro INPUT
