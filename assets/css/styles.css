@@ -1,0 +1,14 @@
+.container-fluid{
+margin-top: 5%;
+width: 50% !important;
+background-color: gainsboro;
+border-radius: 10px;
+}
+
+#formulario{
+    display:flex;
+    justify-content: space-between;
+}
+#tareaInput{
+    width: 80%;
+}
