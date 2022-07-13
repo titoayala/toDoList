@@ -7,9 +7,9 @@ const tareasRealizadas = document.querySelector("#tareasRealizadas")
 
 //ARREGLO DE OBJETOS
 const misTareas = [
-    { id: 1, descripcion: "Maquetar la página" },
-    { id: 2, descripcion: "Agregar el JavaScript" },
-    { id: 3, descripcion: "Entregar el desafío" }
+    { id: 1, descripcion: "Maquetar la página", realizada: "No" },
+    { id: 2, descripcion: "Agregar el JavaScript", realizada: "No" },
+    { id: 3, descripcion: "Entregar el desafío", realizada: "Si" }
 ]
 let idTarea = misTareas.length
 
@@ -19,12 +19,16 @@ function renderTodasLasTareas() {
         html += `<tr>
                     <th>${tarea.id}</th>
                     <td>${tarea.descripcion}</td>
-                    <td>NO</td>
+                    <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
                     <td><button type="button" class="btn btn-danger btn-sm" onclick="borrar(${tarea.id})"> x </button></li></td>
                 </tr>`
     }
     tablaTareas.innerHTML = html //Actualiza el HTML
     totalTareas.innerHTML = misTareas.length
+    const tareaLista = "Si"
+    const tareasFiltradas = misTareas.filter((filtro) => filtro.realizada === tareaLista);
+    tareasRealizadas.innerHTML = tareasFiltradas.length
+    
 }
 
 botonTarea.addEventListener("click", () => {
