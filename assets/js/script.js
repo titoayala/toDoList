@@ -56,17 +56,20 @@ function filtroRealizadas(){
 function cambiaEstado(id) {
     console.log(id)
     let cambio = document.getElementById('botonCambia')
+    let detalleTarea = document.querySelector("#detalleTarea")
     const index = misTareas.findIndex(tarea => tarea.id == id)
     if (misTareas[index].completado == false){
         misTareas[index].completado = true
         cambio.innerHTML = `<strong>SI</strong>`
         cambio.classList.remove('btn-warning')
         cambio.classList.add('btn-success')
+        detalleTarea.style.textDecoration = "line-through"
     }else{
         misTareas[index].completado = false
         cambio.innerHTML = `<strong>NO</strong>`
         cambio.classList.remove('btn-success')
         cambio.classList.add('btn-warning')
+        detalleTarea.style.textDecoration = "none"
     }
     filtroRealizadas()
 }
