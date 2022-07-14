@@ -1,26 +1,37 @@
-.container-fluid{
-margin-top: 5%;
-width: 50% !important;
-background-color: gainsboro;
-border-radius: 10px;
+.container-fluid {
+    margin-top: 5%;
+    width: 50% !important;
+    background-color: gainsboro;
+    border-radius: 10px;
 }
 
-#formulario{
-    display:flex;
+#formulario {
+    display: flex;
     justify-content: space-between;
 }
-#tareaInput{
+
+#tareaInput {
     width: 80%;
 }
 
-#tamañoTarea{
+#tamañoTarea {
     width: 70%;
 }
 
-#contadores{
-margin-top: 40px;
+#contadores {
+    margin-top: 40px;
 }
 
-span{
+span {
     font-weight: bolder;
+}
+
+#Check {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 0.5rem
+}
+
+.miniBoton {
+    text-align: center;
 }

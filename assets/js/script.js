@@ -7,28 +7,27 @@ const tareasRealizadas = document.querySelector("#tareasRealizadas")
 
 //ARREGLO DE OBJETOS
 const misTareas = [
-    { id: 1, descripcion: "Maquetar la página", realizada: "No" },
-    { id: 2, descripcion: "Agregar el JavaScript", realizada: "No" },
-    { id: 3, descripcion: "Entregar el desafío", realizada: "Si" }
+    { id: 1, descripcion: "Maquetar la página", completado: false },
+    { id: 2, descripcion: "Agregar el JavaScript", completado: false },
+    { id: 3, descripcion: "Entregar el desafío", completado: false }
 ]
-let idTarea = misTareas.length
+let idTarea = misTareas.length //Inicializo el contador así ya que el desafío exige 3 objetos pre-cargados!
 
 function renderTodasLasTareas() {
     let html = ""
     for (let tarea of misTareas) {
         html += `<tr>
                     <th>${tarea.id}</th>
-                    <td>${tarea.descripcion}</td>
-                    <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
-                    <td><button type="button" class="btn btn-danger btn-sm" onclick="borrar(${tarea.id})"> x </button></li></td>
+                    <td id="detalleTarea">${tarea.descripcion}</td>
+                    <td class="miniBoton"><button type="button" class="btn btn-warning btn-sm" id="botonCambia"onclick="cambiaEstado(${tarea.id})"></button></td>
+                    <td class="miniBoton"><button type="button" class="btn btn-danger btn-sm" onclick="borrar(${tarea.id})"><strong>X</strong></button></td>
                 </tr>`
     }
     tablaTareas.innerHTML = html //Actualiza el HTML
     totalTareas.innerHTML = misTareas.length
-    const tareaLista = "Si"
-    const tareasFiltradas = misTareas.filter((filtro) => filtro.realizada === tareaLista);
+    const tareaLista = true
+    const tareasFiltradas = misTareas.filter((tarea) => tarea.completado === tareaLista);
     tareasRealizadas.innerHTML = tareasFiltradas.length
-    
 }
 
 botonTarea.addEventListener("click", () => {
@@ -45,8 +44,24 @@ botonTarea.addEventListener("click", () => {
 
 function borrar(id) {
     console.log(id)
-    const index = misTareas.findIndex(x => x.id == id)
+    const index = misTareas.findIndex(tarea => tarea.id == id)
     misTareas.splice(index, 1)
+    renderTodasLasTareas()
+}
+
+function cambiaEstado(id) {
+    let uno = document.getElementById('botonCambia')
+    const index = misTareas.findIndex(tarea => tarea.id == id)
+    console.log(index)
+    console.log(uno)
+    if (misTareas[index].completado == false){
+        misTareas[index].completado = true
+        uno.innerHTML = 'SI'
+        renderTodasLasTareas()
+    }else{
+        misTareas[index].completado = false
+        uno.innerHTML = 'NO'
+    }
     renderTodasLasTareas()
 }
 renderTodasLasTareas()
