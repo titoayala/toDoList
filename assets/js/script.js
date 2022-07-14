@@ -11,7 +11,7 @@ const misTareas = [
     { id: 2, descripcion: "Agregar el JavaScript", completado: false },
     { id: 3, descripcion: "Entregar el desafío", completado: false }
 ]
-let idTarea = misTareas.length //Inicializo el contador así ya que el desafío exige 3 objetos pre-cargados!
+let idTarea = misTareas.length //Inicializo el contador así ya que el desafío exige objetos pre-cargados!
 
 function renderTodasLasTareas() {
     let html = ""
@@ -19,15 +19,13 @@ function renderTodasLasTareas() {
         html += `<tr>
                     <th>${tarea.id}</th>
                     <td id="detalleTarea">${tarea.descripcion}</td>
-                    <td class="miniBoton"><button type="button" class="btn btn-warning btn-sm" id="botonCambia"onclick="cambiaEstado(${tarea.id})"></button></td>
+                    <td class="miniBoton"><button type="button" class="btn btn-warning btn-sm" id="botonCambia"onclick="cambiaEstado(${tarea.id})"><strong>NO</strong></button></td>
                     <td class="miniBoton"><button type="button" class="btn btn-danger btn-sm" onclick="borrar(${tarea.id})"><strong>X</strong></button></td>
                 </tr>`
     }
     tablaTareas.innerHTML = html //Actualiza el HTML
     totalTareas.innerHTML = misTareas.length
-    const tareaLista = true
-    const tareasFiltradas = misTareas.filter((tarea) => tarea.completado === tareaLista);
-    tareasRealizadas.innerHTML = tareasFiltradas.length
+    filtroRealizadas()
 }
 
 botonTarea.addEventListener("click", () => {
@@ -37,7 +35,7 @@ botonTarea.addEventListener("click", () => {
         return
     }
     idTarea++
-    misTareas.push({ id: idTarea, descripcion: nuevaTarea }) //Se coloca el texto en el arreglo
+    misTareas.push({ id: idTarea, descripcion: nuevaTarea, completado: false}) //Se coloca el objeto en el arreglo
     inputTarea.value = "" //Se vacía el cuadro INPUT
     renderTodasLasTareas()
 })
@@ -49,19 +47,27 @@ function borrar(id) {
     renderTodasLasTareas()
 }
 
+function filtroRealizadas(){
+    const tareaLista = true
+    const tareasFiltradas = misTareas.filter((tarea) => tarea.completado === tareaLista);
+    tareasRealizadas.innerHTML = tareasFiltradas.length
+}
+
 function cambiaEstado(id) {
-    let uno = document.getElementById('botonCambia')
+    console.log(id)
+    let cambio = document.getElementById('botonCambia')
     const index = misTareas.findIndex(tarea => tarea.id == id)
-    console.log(index)
-    console.log(uno)
     if (misTareas[index].completado == false){
         misTareas[index].completado = true
-        uno.innerHTML = 'SI'
-        renderTodasLasTareas()
+        cambio.innerHTML = `<strong>SI</strong>`
+        cambio.classList.remove('btn-warning')
+        cambio.classList.add('btn-success')
     }else{
         misTareas[index].completado = false
-        uno.innerHTML = 'NO'
+        cambio.innerHTML = `<strong>NO</strong>`
+        cambio.classList.remove('btn-success')
+        cambio.classList.add('btn-warning')
     }
-    renderTodasLasTareas()
+    filtroRealizadas()
 }
 renderTodasLasTareas()

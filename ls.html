@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cambio del boton</title>
+</head>
+<body>
+    <div>
+        <button id="agregaTarea" onClick="Cambio()">No</button>
+    </div>
+    <style type="text/css">
+        button{
+            width: 100px;
+            padding: 5px;
+            margin: 50px;
+            background-color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        function Cambio(){
+            const botonTarea = document.querySelector("#agregaTarea");
+            if (botonTarea.innerHTML == 'No') {
+                botonTarea.innerHTML='Si';
+                botonTarea.style.background='green';
+            } else {
+                botonTarea.innerHTML='No';
+                botonTarea.style.background='red';
+            }
+        }
+    </script>
+</body>
+</html>
