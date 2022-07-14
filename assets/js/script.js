@@ -13,6 +13,7 @@ const misTareas = [
 ]
 let idTarea = misTareas.length //Inicializo el contador así ya que el desafío exige objetos pre-cargados!
 
+//PARA CARGA INICIAL
 function renderTodasLasTareas() {
     let html = ""
     for (let tarea of misTareas) {
@@ -28,6 +29,7 @@ function renderTodasLasTareas() {
     filtroRealizadas()
 }
 
+//PARA AGREGAR NUEVA TAREA AL ARREGLO
 botonTarea.addEventListener("click", () => {
     const nuevaTarea = inputTarea.value //toma el texto ingresado
     if (nuevaTarea == "") { //Valida que el Input no esté vacío
@@ -40,6 +42,7 @@ botonTarea.addEventListener("click", () => {
     renderTodasLasTareas()
 })
 
+//PARA BORRAR LA TAREA
 function borrar(id) {
     console.log(id)
     const index = misTareas.findIndex(tarea => tarea.id == id)
@@ -47,12 +50,14 @@ function borrar(id) {
     renderTodasLasTareas()
 }
 
+//PARA FILTRAR CONTENIDO Y MOSTRAR TAREAS REALIZADAS
 function filtroRealizadas(){
     const tareaLista = true
     const tareasFiltradas = misTareas.filter((tarea) => tarea.completado === tareaLista);
     tareasRealizadas.innerHTML = tareasFiltradas.length
 }
 
+//PARA CAMBIAR ESTADO DE OBJETO Y ACTUALIZAR VISUALMENTE LA INTERFAZ
 function cambiaEstado(id) {
     console.log(id)
     let cambio = document.getElementById('botonCambia')
@@ -73,4 +78,6 @@ function cambiaEstado(id) {
     }
     filtroRealizadas()
 }
+
+//LLAMADO A CARGA INICIAL
 renderTodasLasTareas()
