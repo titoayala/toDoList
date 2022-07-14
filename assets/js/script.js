@@ -20,7 +20,7 @@ function renderTodasLasTareas() {
         html += `<tr>
                     <th>${tarea.id}</th>
                     <td id="detalleTarea">${tarea.descripcion}</td>
-                    <td class="miniBoton"><button type="button" class="btn btn-warning btn-sm" id="botonCambia"onclick="cambiaEstado(${tarea.id})"><strong>NO</strong></button></td>
+                    <td class="miniBoton"><button id="botonCambia" type="button" class="btn btn-warning btn-sm" onclick="cambiaEstado(${tarea.id})"><strong>NO</strong></button></td>
                     <td class="miniBoton"><button type="button" class="btn btn-danger btn-sm" onclick="borrar(${tarea.id})"><strong>X</strong></button></td>
                 </tr>`
     }
