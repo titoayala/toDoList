@@ -38,6 +38,13 @@ function renderTodasLasTareas() {
     totalTareas.innerHTML = misTareas.length
     filtroRealizadas()
 }
+//PARA ACTIVAR LA TECLA ENTER
+document.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter'){
+        botonTarea.click()
+    }
+});
+
 
 //PARA AGREGAR NUEVA TAREA AL ARREGLO
 botonTarea.addEventListener("click", () => {
